@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "nav.html" %}
+
+<div id="predict-graph">
+    <div class="list-title"><h2>AI予測グラフ</h2></div>
+    <div class="graph-container">
+        {% if predict_sum_graph %}
+            <div><img src="data:image/png;base64,{{ predict_sum_graph }}" alt="Graph"></div>
+            <div><img src="data:image/png;base64,{{ predict_mean_graph }}" alt="Graph"></div>
+        {% else %}
+            <p class="no-data-message">現在、表示できるデータがありません。</p>
+        {% endif %}
+    </div>
+
+    <div class="list-title"><h2>AI予測結果</h2></div>
+    <div class="predict-table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>日付</th>
+                    <th>実際の日別支出_合計</th>
+                    <th>予測の日別支出_合計</th>
+                    <th>実際の日別支出_平均</th>
+                    <th>予測の日別支出_平均</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if forecast %}
+                    {% for row in forecast %}
+                    <tr>
+                        <td>{{ row.日付 }}</td>
+                        <td>{{ row.実際の支出_合計|floatformat:2 }}</td>
+                        <td>{{ row.日別支出_合計|floatformat:2 }}</td>
+                        <td>{{ row.実際の支出_平均|floatformat:2 }}</td>
+                        <td>{{ row.日別支出_平均|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="5">データが不足しています</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

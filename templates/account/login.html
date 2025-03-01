@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>ログイン</title>
+</head>
+<body>
+<div id="admit">
+    <div id="login">
+        <div class="login-box">
+            <div class="login-title">ログイン</div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-field">
+                    {{ form.username.label }}
+                    {{ form.username }}
+                </div>
+                <div class="form-field">
+                    {{ form.password.label }}
+                    {{ form.password }}
+                </div>
+                {% if form.non_field_errors %}
+                    <div class="error-message">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <button type="submit" class="btn btn-login">ログイン</button>
+            </form>
+            <div class="register-link">
+                <a href="{% url 'signup' %}">ユーザー登録はこちら</a>
+            </div>
+            <div class="top-page-link">
+                <a href="{% url 'home' %}">トップページに戻る</a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

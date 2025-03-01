@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>ユーザー登録</title>
+</head>
+<body>
+<div id="admit">
+    <div id="signup">
+        <div class="signup-box">
+            <div class="signup-title">ユーザー登録</div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-field">
+                    {{ form.username.label }}
+                    {{ form.username }}
+                    {% for error in form.username.errors %}
+                        <div class="error-message">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-field">
+                    生年月日{% render_field form.birthday class="form-control" placeholder="2024-01-01" %}
+                    {% for error in form.birthday.errors %}
+                        <div class="error-message">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-field">
+                    {{ form.password1.label }}
+                    {{ form.password1 }}
+                    {% for error in form.password1.errors %}
+                        <div class="error-message">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-field">
+                    {{ form.password2.label }}
+                    {{ form.password2 }}
+                    {% for error in form.password2.errors %}
+                        <div class="error-message">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                {% if form.non_field_errors %}
+                    <div class="error-message">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <button type="submit" class="btn btn-signup">ユーザー登録</button>
+            </form>
+            <div class="login-link">
+                <a href="{% url 'login' %}">ログインはこちら</a>
+            </div>
+            <div class="top-page-link">
+                <a href="{% url 'home' %}">トップページに戻る</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

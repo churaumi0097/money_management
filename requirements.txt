@@ -1,0 +1,9 @@
+django
+pandas 
+matplotlib
+seaborn
+numpy
+japanize_matplotlib
+django-widget-tweaks
+prophet
+python-dotenv

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="home">
+    <div class="overlay">
+        <h2>お金の管理アプリ</h2> 
+        <h1>MONEY   MANAGEMENT</h1>
+        <a href="{% url 'login' %}" class="btn">ログイン</a>
+        <a href="{% url 'signup' %}" class="btn">サインアップ</a>
+    </div>
+</div>
+{% endblock %}

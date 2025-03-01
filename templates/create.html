@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include "nav.html" %}
+<div id="new-registration">
+    <div class="registration-box">
+        <div class="registration-title">お金を入力</div>
+        <form method="POST">
+            {% csrf_token %}
+            
+            {% if form.non_field_errors %}
+                <div class="error-message">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            <div class="form-field">
+                {{ form.date.label }}
+                {{ form.date }}
+            </div>
+            
+            <div class="form-field">
+                {{ form.name.label }}
+                {{ form.name }}
+            </div>
+            
+            <div class="form-field">
+                {{ form.category.label }}
+                {{ form.category }}
+            <div class="cate_create_link"><a href="{% url 'cate_create' %}">カテゴリを追加する</a></div>
+            </div>
+            
+            <div class="form-field">
+                {{ form.price.label }}
+                {{ form.price }}
+            </div>
+            
+            <button type="submit" class="btn-register">登録</button>
+        </form>
+        <div class="cancel-link">
+            <a href="{% url 'list' %}">キャンセル</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

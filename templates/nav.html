@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation</title>
+    <!-- 外部CSSファイルをリンク -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="{% url 'list' %}">MONEY MANAGEMENT</a>
+            </div>
+            <div class="nav-links">
+                <a href="{% url 'list' %}">ホーム</a>
+                <a href="{% url 'create' %}">使用金額の入力</a>
+                <a href="{% url 'predict' %}">AI予測</a>
+                <a href="{% url 'logout' %}">ログアウト</a>
+            </div>
+    </div>
+</nav>
+</body>
+</html>

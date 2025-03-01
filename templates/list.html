@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include "nav.html" %}
+<div id="list">
+    <div class = "list-title"><h2>支出グラフ</h2></div>
+    <div class="graph-container">
+    {% if day_sum_graph %}
+        <div><img src="data:image/png;base64,{{ day_sum_graph }}" alt="Graph"></div>
+        <div><img src="data:image/png;base64,{{ month_sum_graph }}" alt="Graph"></div>
+        <div><img src="data:image/png;base64,{{ day_mean_graph }}" alt="Graph"></div>
+        <div><img src="data:image/png;base64,{{ month_mean_graph }}" alt="Graph"></div>
+        <div><img src="data:image/png;base64,{{ category_mean_pie_graph }}" alt="Graph"></div>
+        <div><img src="data:image/png;base64,{{ category_sum_pie_graph }}" alt="Graph"></div>
+    {% else %}
+        <p class="none-data">現在、表示できるデータがありません。</p>
+    {% endif %}
+    </div>
+    <div class="memory"><h2>支出履歴</h2></div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>日付</th>
+                    <th>支出名</th>
+                    <th>カテゴリー名</th>
+                    <th>金額</th>
+                    <th>この行の修正</th>
+                    <th>この行の削除</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object in objects %}
+                <tr data-id="{{ object.price }}" class="clickable-row">
+                    <td>{{ object.date }}</td>
+                    <td>{{ object.name }}</td>
+                    <td>{{ object.category }}</td>
+                    <td>{{ object.price }}</td>
+                    <td><a href="{% url 'update' object.pk %}">修正</a></button></td>
+                    <td><a href="{% url 'delete' object.pk %}">削除</a></button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
