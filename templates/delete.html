@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>削除確認</h2>
-<p>本当に {{ object.name }} を削除しますか？</p>
-<form method="post">
-    {% csrf_token %}
-    <input type="submit" value="削除">
-    <a href="{% url 'list' %}">キャンセル</a>
-</form>
+{% include "nav.html" %}
+<div id="new-registration">
+    <div class="registration-box">
+        <div class="registration-title">削除確認</div>
+            <p>本当に {{ object.name }} を削除しますか？</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-register">削除</button>
+                <div class="cancel-link">
+                    <a href="{% url 'list' %}">キャンセル</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
