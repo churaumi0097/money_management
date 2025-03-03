@@ -2,6 +2,10 @@ from django.db import models
 from account.models import CustomUser
 
 class Category(models.Model):
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE
+    )
     name = models.CharField(
         max_length=255,
         verbose_name="カテゴリ名"

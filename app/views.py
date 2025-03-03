@@ -258,6 +258,9 @@ class Cate_Create(LoginRequiredMixin,CreateView):
     template_name = "cate_create.html"
     success_url = reverse_lazy("create")
 
+    def get_queryset(self):
+        return Category.objects.filter(user=self.request.user)
+
 
 class Predict(LoginRequiredMixin,ListView):
     model = Post

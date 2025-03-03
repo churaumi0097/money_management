@@ -7,3 +7,7 @@ japanize_matplotlib
 django-widget-tweaks
 prophet
 python-dotenv
+dj-database-url
+python-decouple
+gunicorn
+whitenoise

@@ -5,7 +5,7 @@ from datetime import datetime
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = "__all__"
+        fields = ["name"]
 
 class PostForm(forms.ModelForm):
     class Meta:
