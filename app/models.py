@@ -4,7 +4,9 @@ from account.models import CustomUser
 class Category(models.Model):
     user = models.ForeignKey(
         CustomUser,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null = True,
+        blank = True
     )
     name = models.CharField(
         max_length=255,
